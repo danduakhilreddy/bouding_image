@@ -14,6 +14,7 @@ gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 # Perform OCR on the grayscale image
 pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'
 result = pytesseract.image_to_data(gray_image, output_type=pytesseract.Output.DICT)
+
 for entry in data["text"]:
     # Extract the text
     text = entry
@@ -40,8 +41,13 @@ for entry in data["text"]:
     cv2.rectangle(image, (min_x, min_y), (max_x, max_y), (0, 255, 0), 2)
 
 
+
+# Iterate over the text entries in the JSON data
+
+
 # Display the image with bounding boxes
 cv2.imshow('Image with Bounding Boxes', image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 cv2.imwrite("image_with_marked_words.jpg", image)
+   
